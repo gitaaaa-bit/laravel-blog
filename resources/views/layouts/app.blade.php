@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
@@ -12,6 +12,9 @@
     <div class="container">
 
         <a class="navbar-brand" href="/">Laravel Challenge</a>
+        <button id="themeToggle" class="btn btn-outline-light">
+    🌙 Dark Mode
+</button>
 
         <div class="navbar-nav">
             <a class="nav-link" href="/">Beranda</a>
@@ -32,6 +35,62 @@
     Copyright © 2026
 </footer>
 
+@push('scripts')
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const toggleBtn = document.getElementById('themeToggle');
+
+    const currentTheme =
+        localStorage.getItem('theme') || 'light';
+
+    document.documentElement.setAttribute(
+        'data-bs-theme',
+        currentTheme
+    );
+
+    updateButtonText(currentTheme);
+
+    toggleBtn.addEventListener('click', function () {
+
+        let theme =
+            document.documentElement.getAttribute(
+                'data-bs-theme'
+            );
+
+        theme =
+            theme === 'light'
+                ? 'dark'
+                : 'light';
+
+        document.documentElement.setAttribute(
+            'data-bs-theme',
+            theme
+        );
+
+        localStorage.setItem(
+            'theme',
+            theme
+        );
+
+        updateButtonText(theme);
+
+    });
+
+    function updateButtonText(theme) {
+
+        toggleBtn.textContent =
+            theme === 'dark'
+                ? '☀️ Light Mode'
+                : '🌙 Dark Mode';
+
+    }
+
+});
+
+</script>
+@endpush
 @stack('scripts')
 
 </body>
