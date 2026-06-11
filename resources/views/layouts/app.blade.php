@@ -22,6 +22,10 @@
             <a class="nav-link" href="/portofolio">Portofolio</a>
             <a class="nav-link" href="/blog">Blog</a>
             <a class="nav-link" href="/kontak">Kontak</a>
+            <a class="nav-link" href="/components">
+    Components
+</a>
+            
         </div>
 
     </div>
@@ -35,62 +39,43 @@
     Copyright © 2026
 </footer>
 
-@push('scripts')
 <script>
-
 document.addEventListener('DOMContentLoaded', function () {
 
     const toggleBtn = document.getElementById('themeToggle');
 
-    const currentTheme =
-        localStorage.getItem('theme') || 'light';
+    if (!toggleBtn) return;
 
-    document.documentElement.setAttribute(
-        'data-bs-theme',
-        currentTheme
-    );
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    document.documentElement.setAttribute('data-bs-theme', currentTheme);
 
     updateButtonText(currentTheme);
 
     toggleBtn.addEventListener('click', function () {
 
-        let theme =
-            document.documentElement.getAttribute(
-                'data-bs-theme'
-            );
+        let theme = document.documentElement.getAttribute('data-bs-theme');
 
-        theme =
-            theme === 'light'
-                ? 'dark'
-                : 'light';
+        theme = theme === 'light' ? 'dark' : 'light';
 
-        document.documentElement.setAttribute(
-            'data-bs-theme',
-            theme
-        );
+        document.documentElement.setAttribute('data-bs-theme', theme);
 
-        localStorage.setItem(
-            'theme',
-            theme
-        );
+        localStorage.setItem('theme', theme);
 
         updateButtonText(theme);
 
     });
 
     function updateButtonText(theme) {
-
         toggleBtn.textContent =
             theme === 'dark'
                 ? '☀️ Light Mode'
                 : '🌙 Dark Mode';
-
     }
 
 });
-
 </script>
-@endpush
+
 @stack('scripts')
 
 </body>

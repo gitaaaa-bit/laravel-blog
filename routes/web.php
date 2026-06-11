@@ -39,4 +39,9 @@ Route::get('/blog', function () {
 
 Route::get('/kontak', function () {
     return view('pages.kontak');
+
+});
+
+Route::get('/components', function () {
+    return view('pages.components');
 });
